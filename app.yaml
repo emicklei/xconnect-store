@@ -1,0 +1,43 @@
+xconnect:
+  meta:
+    # name for discovery
+    name: account-service
+    # tagged version of the implementationlok  
+    version: v1.2.3
+    # team that owns the code and operates it
+    owner: team accounts
+    labels:
+      - account
+      - registration
+      - search    
+  listen:
+    api:      
+      host: localhost
+      protocol: grpc
+      port: 9443
+    web:
+      host: localhost
+      protocol: http
+      tls: true
+      port: 443
+  connect:
+    web:
+      host: localhost
+      port: 8080
+    some-db:
+      protocol: tcp 
+      host: localhost 
+      port: 5432
+      url: jdbc:postgresql://localhost:5432/postgres?reWriteBatchedInserts=true
+    some-cache:
+      host: #REDIS_IP
+      port: 6379
+    variant-publish:
+      gcp.pubsub:
+        topic: VariantToAssortment_Push_v1-topic   
+        project: the-other-project       
+    variant-pull:
+      gcp.pubsub:
+        subscription: Variant_v1-subscription
+        test:
+          topic: Variant_v1-topic

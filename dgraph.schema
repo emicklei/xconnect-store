@@ -1,0 +1,39 @@
+network_scope_id: string @index(hash) .
+child_scopes: [uid] .
+components: [uid] .
+type NetworkScope {
+    network_scope_id
+    child_scopes
+    components
+}
+
+network_endpoint_id: string @index(hash) .
+url: string .
+protocol: string .
+host: string .
+tls: bool .
+port: int .
+type NetworkEndpoint {
+    network_endpoint_id
+	url
+    host
+    protocol
+    tls
+    port
+}
+
+network_component_id: string @index(hash) .
+product: string .
+listens: [uid] . # NetworkEndpoint
+connects: [uid] . # NetworkEndpoint
+type NetworkComponent {
+    network_component_id
+    # scalars
+
+    # relations
+    product
+    listens
+    connects
+}
+
+ 

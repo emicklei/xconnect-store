@@ -1,0 +1,9 @@
+xconnect:
+  meta:
+    # name for discovery
+    name: account-db
+  listen:
+    api:      
+      host: localhost
+      protocol: jdbc
+      port: 5432
