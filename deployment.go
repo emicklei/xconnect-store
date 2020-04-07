@@ -22,7 +22,7 @@ func upsertDeployment(d *dga.DGraphAccess, networkPath string, cfg xconnect.Conf
 	}
 	log.Println("NetworkComponent ", n.Node.GetUID(), ":", n.ID)
 
-	if err := d.Fluent().CreateEdge(scope, "component", n); err != nil {
+	if err := d.Fluent().CreateEdge(scope, "components", n); err != nil {
 		return err
 	}
 
@@ -34,7 +34,7 @@ func upsertDeployment(d *dga.DGraphAccess, networkPath string, cfg xconnect.Conf
 			return err
 		}
 		log.Println("NetworkEndpoint ", e.Node.GetUID(), ":", e.ID)
-		if err := d.Fluent().CreateEdge(n, "listen", e); err != nil {
+		if err := d.Fluent().CreateEdge(n, "listens", e); err != nil {
 			return err
 		}
 	}
@@ -47,7 +47,7 @@ func upsertDeployment(d *dga.DGraphAccess, networkPath string, cfg xconnect.Conf
 			return err
 		}
 		log.Println("NetworkEndpoint ", e.Node.GetUID(), ":", e.ID)
-		if err := d.Fluent().CreateEdge(n, "connect", e); err != nil {
+		if err := d.Fluent().CreateEdge(n, "connects", e); err != nil {
 			return err
 		}
 	}

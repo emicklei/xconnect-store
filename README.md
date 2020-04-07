@@ -18,13 +18,58 @@ resource.labels.pod_name="dgraph-ratel-59d8d7b848-vb7ch"
 
 
 -------------------------
+query NE {
+  q(func: type(NetworkEndpoint)) {
+   uid
+   expand(_all_)
+  }
+}
+-------------------------
+query NC {
+  q(func: type(NetworkComponent)) {
+   uid
+   expand(_all_)
+  }
+}
+-------------------------
 query X {
   q(func: type(NetworkEndpoint)) {
    uid
-   dgraph.type
    expand(NetworkEndpoint)
    x {
      uid
+     expand(_all_)
    }
   }
+}
+-------------------------
+query X {
+        q(func: type(NetworkScope)) {
+    					  dgraph.type
+    						network_scope_id
+                uid
+                components {
+                      network_component_id
+                      dgraph.type
+                      uid
+                    	connects {
+                        network_endpoint_id
+                        dgraph.type
+                        uid
+                        x {
+                          dgraph.type
+                          uid
+                        }
+                      }
+                      listens {
+                        network_endpoint_id
+                        dgraph.type
+                        uid
+                        x {
+                          dgraph.type
+                          uid
+                        }
+                      }
+                    }                	                    						
+        }
 }
