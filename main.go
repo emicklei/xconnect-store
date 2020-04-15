@@ -74,7 +74,7 @@ func alterSchema(da *dga.DGraphAccess) error {
 	if err != nil {
 		return tre.New(err, "file", "dgraph.schema")
 	}
-	return da.Fluent().AlterSchema(string(s))
+	return da.Service().AlterSchema(string(s))
 }
 
 func newClient() *dgo.Dgraph {
