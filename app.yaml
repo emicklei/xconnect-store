@@ -2,36 +2,37 @@ xconnect:
   meta:
     # name for discovery
     name: account-service
-    # tagged version of the implementationlok  
+    # tagged version of the implementation 
     version: v1.2.3
     # team that owns the code and operates it
-    owner: team accounts
-    labels:
+    opex: team accounts
+    tags:
       - account
       - registration
       - search    
   listen:
-    api:      
-      host: localhost
+    api:     
+      # public endpoint 
+      host: where.grpc.can.be.reached
       protocol: grpc
-      port: 9443
+      port: 443
     web:
-      host: localhost
+      # public endpoint
+      host: where.https.can.be.reached
       protocol: http
       tls: true
       port: 443
   connect:
-    web:
-      host: localhost
-      port: 8080
-    some-db:
+    account-service-db:
       protocol: tcp 
       host: localhost 
       port: 5432
       url: jdbc:postgresql://localhost:5432/postgres?reWriteBatchedInserts=true
-    some-cache:
+      kind: postgres
+    account-service-cache:
       host: #REDIS_IP
       port: 6379
+      kind: memorystore
     variant-publish:
       gcp.pubsub:
         topic: VariantToAssortment_Push_v1-topic   
